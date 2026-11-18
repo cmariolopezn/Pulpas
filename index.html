@@ -566,7 +566,7 @@
                 const qty = cart[id];
                 const itemTotal = product.price * qty;
                 totalPrice += itemTotal;
-                orderText += `• ${product.name} (500g) x ${qty} = ${formatMoney(itemTotal)}\n`;
+                orderText += `• ${product.name} (400g) x ${qty} = ${formatMoney(itemTotal)}\n`;
             });
 
             orderText += `\n*TOTAL A PAGAR:* ${formatMoney(totalPrice)}\n`;
@@ -579,7 +579,7 @@
                 // Generar URL para enviar a WhatsApp
                 const encodedText = encodeURIComponent(orderText);
                 // Número de WhatsApp de prueba o del negocio
-                const whatsappUrl = `https://wa.me/?text=${encodedText}`;
+                const whatsappUrl = `https://wa.me/573108277784?text=${encodedText}`;
                 window.open(whatsappUrl, '_blank');
             } else {
                 // Mostrar resumen en modal en la misma página
