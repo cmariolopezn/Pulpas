@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pulpas Naturales - Fruta Real en Tu Hogar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#f97316',
+                            600: '#ea580c',
+                            700: '#c2410c',
+                        },
+                        fresh: {
+                            500: '#84cc16',
+                            600: '#65a30d',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos personalizados para animaciones suave y scroll bar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .bg-fruit-pattern {
+            background-color: #fff7ed;
+            background-image: radial-gradient(#ea580c 0.5px, transparent 0.5px), radial-gradient(#84cc16 0.5px, #fff7ed 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.15;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-orange-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-fresh-500 flex items-center justify-center text-white text-2xl shadow-md shadow-orange-500/20">
+                    <i class="fa-solid fa-lemon"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-2xl text-gray-900 tracking-tight leading-none">Pulpa<span class="text-brand-600">Pura</span></h1>
+                    <p class="text-xs text-emerald-600 font-semibold tracking-wider uppercase mt-1">100% Natural</p>
+                </div>
+            </div>
+
+            <!-- Botón Carrito en Navbar (Móvil y Escritorio) -->
+            <button onclick="toggleCartDrawer()" class="relative bg-orange-50 hover:bg-orange-100 text-brand-600 font-bold px-4 py-2.5 rounded-2xl flex items-center gap-2.5 transition-all">
+                <i class="fa-solid fa-basket-shopping text-xl"></i>
+                <span class="hidden sm:inline">Ver Pedido</span>
+                <span id="cart-count-badge" class="bg-brand-600 text-white text-xs font-extrabold px-2 py-0.5 rounded-full min-w-[20px]">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Banner Principal / Hero -->
+    <section class="bg-gradient-to-r from-orange-500 via-amber-500 to-fresh-500 text-white py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden shadow-lg">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="max-w-7xl mx-auto relative z-10 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="max-w-2xl">
+                <span class="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-widest inline-block mb-3">Envíos a Domicilio</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold leading-tight">Pulpas de Fruta 400g</h2>
+                <p class="mt-3 text-orange-50 text-base sm:text-lg">Selecciona tus sabores favoritos y te las llevamos a la puerta de tu casa.</p>
+            </div>
+            <div class="flex items-center gap-4 bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/20">
+                <div class="text-center px-3">
+                    <i class="fa-solid fa-seedling text-3xl mb-1 text-fresh-500"></i>
+                    <p class="text-xs font-semibold">Sin conservantes</p>
+                </div>
+                <div class="h-8 w-px bg-white/30"></div>
+                <div class="text-center px-3">
+                    <i class="fa-solid fa-snowflake text-3xl mb-1 text-cyan-200"></i>
+                    <p class="text-xs font-semibold">Congeladas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contenido Principal (Catálogo y Resumen) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow w-full">
+
+        <div class="flex flex-col lg:flex-row gap-8">
+            
+            <!-- LISTADO DE PRODUCTOS (COLUMNA IZQUIERDA/PRINCIPAL) -->
+            <div class="lg:w-2/3">
+                <div class="flex justify-between items-center mb-6">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900">Nuestros Sabores</h3>
+                        <p class="text-sm text-gray-500">Presentación de 400g (Rinde hasta 4 vasos de 12 oz)</p>
+                    </div>
+                </div>
+
+                <!-- Grid de Tarjetas de Productos -->
+                <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <!-- Las tarjetas se generan dinámicamente mediante JS -->
+                </div>
+            </div>
+
+            <!-- RESUMEN DEL PEDIDO FIJO / BARRA LATERAL (ESCRITORIO) -->
+            <div class="lg:w-1/3">
+                <div class="sticky top-28 bg-white rounded-3xl shadow-xl shadow-orange-500/5 border border-orange-100 p-6">
+                    <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+                        <h3 class="text-xl font-bold text-gray-900 flex items-center gap-2">
+                            <i class="fa-solid fa-receipt text-brand-600"></i>
+                            Resumen de Pedido
+                        </h3>
+                        <span id="cart-item-count" class="text-xs font-bold text-gray-500 bg-gray-100 px-2.5 py-1 rounded-full">0 ítems</span>
+                    </div>
+
+                    <!-- Lista de ítems seleccionados -->
+                    <div id="cart-items-list" class="py-4 max-h-72 overflow-y-auto divide-y divide-gray-100 space-y-2">
+                        <div class="text-center py-8 text-gray-400">
+                            <i class="fa-solid fa-basket-shopping text-4xl mb-2 text-gray-200"></i>
+                            <p class="text-sm">Aún no has agregado pulpas al pedido.</p>
+                        </div>
+                    </div>
+
+                    <!-- Totales -->
+                    <div class="pt-4 border-t border-gray-100 space-y-2">
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="font-semibold">$0</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-gray-600">
+                            <span>Domicilio</span>
+                            <span class="text-emerald-600 font-semibold">¡GRATIS!</span>
+                        </div>
+                        <div class="flex justify-between text-lg font-extrabold text-gray-900 pt-2 border-t border-dashed border-gray-200">
+                            <span>Total a pagar</span>
+                            <span id="cart-total" class="text-brand-600">$0</span>
+                        </div>
+                    </div>
+
+                    <!-- Botón Hacer Pedido -->
+                    <button id="btn-open-checkout" onclick="openCheckoutModal()" disabled class="w-full mt-6 bg-gradient-to-r from-brand-500 to-brand-600 hover:from-brand-600 hover:to-brand-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 px-6 rounded-2xl shadow-lg shadow-orange-500/30 flex items-center justify-center gap-2 transition-all transform active:scale-95">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Hacer el Pedido</span>
+                    </button>
+
+                    <p class="text-xs text-center text-gray-400 mt-3">
+                        <i class="fa-solid fa-shield-halved text-emerald-500 mr-1"></i> Pago contra entrega o transferencia
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- MODAL DE CHECKOUT / DATOS DE ENVÍO -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden transform transition-all animate-in fade-in zoom-in duration-200">
+            
+            <!-- Header Modal -->
+            <div class="bg-gradient-to-r from-brand-600 to-amber-500 p-6 text-white relative">
+                <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-black/20 hover:bg-black/40 flex items-center justify-center text-white transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+                <h3 class="text-2xl font-bold">Datos para el Envío</h3>
+                <p class="text-xs text-orange-100 mt-1">Completa tu información para coordinar la entrega</p>
+            </div>
+
+            <!-- Formulario de Entrega -->
+            <form id="checkout-form" onsubmit="handleFormSubmit(event)" class="p-6 space-y-4">
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="customer-name">
+                        <i class="fa-solid fa-user text-brand-600 mr-1"></i> Nombre Completo *
+                    </label>
+                    <input type="text" id="customer-name" required placeholder="Ej. Ana María Gómez" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="customer-phone">
+                        <i class="fa-solid fa-phone text-brand-600 mr-1"></i> Teléfono / Celular WhatsApp *
+                    </label>
+                    <input type="tel" id="customer-phone" required placeholder="Ej. 300 123 4567" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="customer-address">
+                        <i class="fa-solid fa-location-dot text-brand-600 mr-1"></i> Dirección de Entrega (con barrio/ciudad) *
+                    </label>
+                    <input type="text" id="customer-address" required placeholder="Ej. Calle 45 # 12 - 34, Apt 301, Laureles" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="customer-schedule">
+                        <i class="fa-solid fa-clock text-brand-600 mr-1"></i> Horario Preferido de Recepción *
+                    </label>
+                    <select id="customer-schedule" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all bg-white">
+                        <option value="">Selecciona un horario...</option>
+                        <option value="Mañana (8:00 AM - 12:00 PM)">Mañana (8:00 AM - 12:00 PM)</option>
+                        <option value="Tarde (1:00 PM - 5:00 PM)">Tarde (1:00 PM - 5:00 PM)</option>
+                        <option value="Noche (5:00 PM - 7:00 PM)">Noche (5:00 PM - 7:00 PM)</option>
+                        <option value="Lo antes posible">Lo antes posible</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-1" for="customer-notes">
+                        <i class="fa-solid fa-comment-dots text-brand-600 mr-1"></i> Notas Adicionales (Opcional)
+                    </label>
+                    <textarea id="customer-notes" rows="2" placeholder="Ej. Timbre 301 o dejar en portería" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none"></textarea>
+                </div>
+
+                <!-- Resumen Rápido -->
+                <div class="bg-orange-50 p-4 rounded-xl border border-orange-100 flex items-center justify-between text-sm">
+                    <span class="text-gray-600 font-medium">Total de tu pedido:</span>
+                    <span id="modal-order-total" class="font-extrabold text-brand-600 text-lg">$0</span>
+                </div>
+
+                <!-- Opciones de Envío -->
+                <div class="pt-2 flex flex-col gap-2">
+                    <button type="submit" name="action" value="whatsapp" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-brands fa-whatsapp text-xl"></i>
+                        <span>Enviar Pedido por WhatsApp</span>
+                    </button>
+                    <button type="submit" name="action" value="confirm" class="w-full bg-gray-900 hover:bg-black text-white font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition-all">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Confirmar en Pantalla</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL DE CONFIRMACIÓN / ÉXITO -->
+    <div id="success-modal" class="fixed inset-0 z-50 hidden overflow-y-auto bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl p-6 text-center">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-4">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h3 class="text-2xl font-extrabold text-gray-900 mb-2">¡Pedido Recibido!</h3>
+            <p class="text-gray-600 text-sm mb-4">Gracias por tu compra. Hemos generado el ticket de tu pedido:</p>
+            
+            <div id="order-summary-box" class="bg-gray-50 border border-gray-200 rounded-2xl p-4 text-left text-xs font-mono space-y-2 mb-6 max-h-60 overflow-y-auto">
+                <!-- Se llena dinámicamente -->
+            </div>
+
+            <button onclick="closeSuccessModal()" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 px-6 rounded-xl transition-all">
+                Aceptar y Finalizar
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:flex sm:justify-between sm:items-center">
+            <p class="text-sm">© 2026 PulpaPura - Pulpas de Fruta 100% Naturales sin azucar adicionada. Todos los derechos reservados.</p>
+            <div class="flex justify-center gap-4 mt-4 sm:mt-0 text-xl text-gray-400">
+                <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="hover:text-brand-500 transition-colors"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- LÓGICA JAVASCRIPT -->
+    <script>
+        // Datos de las Pulpas de Fruta
+        const products = [
+            {
+                id: 1,
+                name: 'Pulpa de Tomate de Árbol',
+                flavor: 'Tomate de Árbol Andino',
+                price: 7000,
+                image: 'https://media.istockphoto.com/id/1957161038/es/foto/tamarillo-primer-plano-de-la-mitad-y-de-la-pieza-sobre-un-blanco-aislado.webp?a=1&b=1&s=612x612&w=0&k=20&c=W7cRnZAQWIaRUTSgVi5KOk8we2sMvTMdjW6tpCuAppg=',
+                badge: 'Natural',
+                badgeColor: 'bg-red-600',
+                description: 'Pulpa natural de tomate de árbol, rica en vitaminas y antioxidantes.'
+            },
+            {
+                id: 2,
+                name: 'Pulpa de Guayaba',
+                flavor: 'Guayaba Roja',
+                price: 7000,
+                image: 'https://media.istockphoto.com/id/171575811/es/foto/guayaba.webp?a=1&b=1&s=612x612&w=0&k=20&c=F6PFFWhXVs6LzySVJ1AZ5obDlstj3aCo6WQqv_88XT0=',
+                badge: 'Vitaminas',
+                badgeColor: 'bg-pink-500',
+                description: 'Pulpa de guayaba seleccionada, ideal para jugos y batidos.'
+            },
+            {
+                id: 3,
+                name: 'Pulpa de Mango',
+                flavor: 'Mango Dulce',
+                price: 7000,
+                image: 'https://images.unsplash.com/photo-1673010960635-d0d1ad81b90a?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+                badge: 'Más Vendido',
+                badgeColor: 'bg-amber-400',
+                description: 'Cremosa y dulce pulpa natural de mango.'
+            },
+            {
+                id: 4,
+                name: 'Pulpa de Fresa',
+                flavor: 'Fresa Dulce',
+                price: 7000,
+                image: 'https://images.unsplash.com/photo-1759686762997-64cd99f76846?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=NHwxMjA3fDA%3D',
+                badge: '100% Fresca',
+                badgeColor: 'bg-red-500',
+                description: 'Fresas seleccionadas que conservan todo su sabor y nutrientes.'
+            },
+            {
+                id: 5,
+                name: 'Pulpa de Mora',
+                flavor: 'Mora de Castilla',
+                price: 7000,
+                image: 'https://media.istockphoto.com/id/2208333478/es/foto/mora-fresca-aislada.webp?a=1&b=1&s=612x612&w=0&k=20&c=Cc8vKta_u6pcvVlmH7gI6SFuBS9xm47QiTNQtDCh1cs=',
+                badge: 'Antioxidante',
+                badgeColor: 'bg-purple-600',
+                description: 'Moras maduras cuidadosamente seleccionadas.'
+            },
+            {
+                id: 6,
+                name: 'Pulpa de Lulo',
+                flavor: 'Lulo de Castilla',
+                price: 7000,
+                image: 'https://media.istockphoto.com/id/2269150493/photo/solanum-quitoense-naranjilla-tropical-fruit-in-colombian-market-square.jpg?s=1024x1024&w=is&k=20&c=9IZ0jQuHWxF1lkajDbWfmi0rrd9liJErbTIK26LLVLY=',
+                badge: 'Autóctono',
+                badgeColor: 'bg-emerald-600',
+                description: 'El auténtico sabor colombiano en una pulpa fresca y natural.'
+            },
+            {
+                id: 7,
+                name: 'Pulpa de Maracuyá',
+                flavor: 'Fruta de la Pasión',
+                price: 7000,
+                image: 'https://media.istockphoto.com/id/2239714725/photo/yellow-passion-fruit-isolated-on-white-background-fresh-passion-fruit-or-maracuja-on-white.jpg?s=612x612&w=0&k=20&c=keplV8BWKZvQZxjySr25b6g-tr9tzNAwmoAF-mQ0D5w=',
+                badge: 'Favorita',
+                badgeColor: 'bg-yellow-500',
+                description: 'Pulpa pura de maracuyá con el equilibrio perfecto entre dulzor y acidez.'
+            },
+            {
+                id: 8,
+                name: 'Pulpa de Guanabana',
+                flavor: 'Fruta de tradición',
+                price: 8000,
+                image: 'https://media.istockphoto.com/id/465065982/es/foto/soursop-o-guanabana.webp?a=1&b=1&s=612x612&w=0&k=20&c=xHl4oBb1oFJAoA_3UkLPSR_xScRSiQHhmrWm0v1ppPg=',
+                badge: 'Premium',
+                badgeColor: 'bg-teal-600',
+                description: 'Pulpa pura de guanabana con sabor tradicional.'
+            }
+        ];
+
+        // Estado del Carrito: { productId: quantity }
+        let cart = {};
+
+        // Inicializar Aplicación
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            updateCartUI();
+        });
+
+        // Formatear precio a Pesos (COP)
+        function formatMoney(amount) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP',
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        // Renderizar Catálogo de Productos
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = products.map(product => {
+                const qty = cart[product.id] || 0;
+                return `
+                    <div class="bg-white rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 border border-orange-100/70 overflow-hidden flex flex-col group">
+                        <!-- Imagen del producto -->
+                        <div class="relative h-48 overflow-hidden bg-orange-50">
+                            <img src="${product.image}" alt="${product.name}" 
+                                 onerror="this.src='https://placehold.co/600x400/ffedd5/c2410c?text=${encodeURIComponent(product.name)}'"
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-3 left-3 ${product.badgeColor} text-white text-xs font-extrabold px-3 py-1 rounded-full shadow-md uppercase tracking-wider">
+                                ${product.badge}
+                            </span>
+                            <span class="absolute bottom-3 right-3 bg-white/90 backdrop-blur-md text-gray-900 font-extrabold text-sm px-3 py-1.5 rounded-xl shadow">
+                                ${formatMoney(product.price)}
+                            </span>
+                        </div>
+
+                        <!-- Detalles del producto -->
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-xl font-extrabold text-gray-900">${product.name}</h4>
+                                <p class="text-xs text-brand-600 font-bold mb-2">${product.flavor}</p>
+                                <p class="text-gray-500 text-xs leading-relaxed mb-4">${product.description}</p>
+                            </div>
+
+                            <!-- Selector de Cantidad -->
+                            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+                                <span class="text-xs font-bold text-gray-400">Cantidad (500g):</span>
+                                <div class="flex items-center gap-2 bg-gray-100 p-1 rounded-2xl border border-gray-200">
+                                    <button onclick="changeQuantity(${product.id}, -1)" class="w-8 h-8 rounded-xl bg-white hover:bg-orange-500 hover:text-white text-gray-700 font-bold flex items-center justify-center transition-colors shadow-sm">
+                                        <i class="fa-solid fa-minus text-xs"></i>
+                                    </button>
+                                    <input type="number" min="0" value="${qty}" onchange="setQuantity(${product.id}, this.value)" 
+                                           class="w-10 text-center font-extrabold text-gray-800 bg-transparent border-none focus:outline-none text-sm">
+                                    <button onclick="changeQuantity(${product.id}, 1)" class="w-8 h-8 rounded-xl bg-white hover:bg-orange-500 hover:text-white text-gray-700 font-bold flex items-center justify-center transition-colors shadow-sm">
+                                        <i class="fa-solid fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Modificar cantidad desde botones + / -
+        function changeQuantity(productId, delta) {
+            const currentQty = cart[productId] || 0;
+            const newQty = Math.max(0, currentQty + delta);
+            if (newQty === 0) {
+                delete cart[productId];
+            } else {
+                cart[productId] = newQty;
+            }
+            renderProducts();
+            updateCartUI();
+        }
+
+        // Modificar cantidad directamente en input
+        function setQuantity(productId, value) {
+            const qty = parseInt(value) || 0;
+            if (qty <= 0) {
+                delete cart[productId];
+            } else {
+                cart[productId] = qty;
+            }
+            renderProducts();
+            updateCartUI();
+        }
+
+        // Actualizar la vista del Carrito
+        function updateCartUI() {
+            const itemsList = document.getElementById('cart-items-list');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            const modalTotalEl = document.getElementById('modal-order-total');
+            const countBadge = document.getElementById('cart-count-badge');
+            const itemCountEl = document.getElementById('cart-item-count');
+            const checkoutBtn = document.getElementById('btn-open-checkout');
+
+            const keys = Object.keys(cart);
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if (keys.length === 0) {
+                itemsList.innerHTML = `
+                    <div class="text-center py-8 text-gray-400">
+                        <i class="fa-solid fa-basket-shopping text-4xl mb-2 text-gray-200"></i>
+                        <p class="text-sm">Aún no has agregado pulpas al pedido.</p>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                checkoutBtn.disabled = false;
+                itemsList.innerHTML = keys.map(id => {
+                    const product = products.find(p => p.id === parseInt(id));
+                    const qty = cart[id];
+                    const itemTotal = product.price * qty;
+                    totalItems += qty;
+                    totalPrice += itemTotal;
+
+                    return `
+                        <div class="py-2.5 flex items-center justify-between gap-3">
+                            <div class="flex-grow">
+                                <h5 class="text-sm font-bold text-gray-800">${product.name}</h5>
+                                <p class="text-xs text-gray-400">${qty} unit x ${formatMoney(product.price)}</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-sm font-extrabold text-brand-600">${formatMoney(itemTotal)}</span>
+                                <button onclick="changeQuantity(${product.id}, -${qty})" class="block text-xs text-red-400 hover:text-red-600 ml-auto mt-0.5">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            // Actualizar Totales en DOM
+            subtotalEl.innerText = formatMoney(totalPrice);
+            totalEl.innerText = formatMoney(totalPrice);
+            modalTotalEl.innerText = formatMoney(totalPrice);
+            countBadge.innerText = totalItems;
+            itemCountEl.innerText = `${totalItems} paquete(s)`;
+        }
+
+        // Modales y Controles
+        function openCheckoutModal() {
+            document.getElementById('checkout-modal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkout-modal').classList.add('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            cart = {};
+            renderProducts();
+            updateCartUI();
+        }
+
+        // Abrir drawer de carrito en móviles deslizando suave hacia el resumen
+        function toggleCartDrawer() {
+            const checkoutCard = document.querySelector('.lg\\:w-1\\/3');
+            checkoutCard.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Procesar formulario de checkout
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const submitter = event.submitter ? event.submitter.value : 'whatsapp';
+            
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+            const schedule = document.getElementById('customer-schedule').value;
+            const notes = document.getElementById('customer-notes').value.trim();
+
+            let orderText = `*¡NUEVO PEDIDO DE PULPAS DE FRUTA!* 🥭🍓\n\n`;
+            orderText += `*Cliente:* ${name}\n`;
+            orderText += `*Teléfono:* ${phone}\n`;
+            orderText += `*Dirección:* ${address}\n`;
+            orderText += `*Horario de Entrega:* ${schedule}\n`;
+            if (notes) orderText += `*Notas:* ${notes}\n`;
+            
+            orderText += `\n*DETALLE DEL PEDIDO:*\n`;
+
+            let totalPrice = 0;
+            Object.keys(cart).forEach(id => {
+                const product = products.find(p => p.id === parseInt(id));
+                const qty = cart[id];
+                const itemTotal = product.price * qty;
+                totalPrice += itemTotal;
+                orderText += `• ${product.name} (500g) x ${qty} = ${formatMoney(itemTotal)}\n`;
+            });
+
+            orderText += `\n*TOTAL A PAGAR:* ${formatMoney(totalPrice)}\n`;
+            orderText += `*Envío:* GRATIS\n`;
+            orderText += `-----------------------------------`;
+
+            closeCheckoutModal();
+
+            if (submitter === 'whatsapp') {
+                // Generar URL para enviar a WhatsApp
+                const encodedText = encodeURIComponent(orderText);
+                // Número de WhatsApp de prueba o del negocio
+                const whatsappUrl = `https://wa.me/?text=${encodedText}`;
+                window.open(whatsappUrl, '_blank');
+            } else {
+                // Mostrar resumen en modal en la misma página
+                const summaryBox = document.getElementById('order-summary-box');
+                summaryBox.innerText = orderText;
+                document.getElementById('success-modal').classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>
