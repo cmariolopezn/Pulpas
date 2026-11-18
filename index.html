@@ -575,18 +575,11 @@
 
             closeCheckoutModal();
 
-            if (submitter === 'whatsapp') {
-                // Generar URL para enviar a WhatsApp
-                const encodedText = encodeURIComponent(orderText);
-                // Número de WhatsApp de prueba o del negocio
-                const whatsappUrl = `https://wa.me/573108277784?text=${encodedText}`;
-                window.open(whatsappUrl, '_blank');
-            } else {
-                // Mostrar resumen en modal en la misma página
-                const summaryBox = document.getElementById('order-summary-box');
-                summaryBox.innerText = orderText;
-                document.getElementById('success-modal').classList.remove('hidden');
-            }
+// Generar URL para enviar a WhatsApp
+            const encodedText = encodeURIComponent(orderText);
+            // Número de WhatsApp de prueba o del negocio
+            const whatsappUrl = `https://wa.me/?text=${encodedText}`;
+            window.open(whatsappUrl, '_blank');
         }
     </script>
 </body>
